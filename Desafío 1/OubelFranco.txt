@@ -1,0 +1,54 @@
+class Usuario {
+    constructor(nombre, apellido, libros, mascotas) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.libros = libros;
+        this.mascotas = mascotas;
+    }
+
+    getFullName() {
+        return `${this.nombre} ${this.apellido}`;
+    }
+
+    addMascota(nombreMascota) {
+        this.mascotas.push(nombreMascota);
+    }
+
+    countMascotas() {
+        return this.mascotas.length;
+    }
+
+    addBook(nombreLibro, nombreAutor) {
+        let objetoAAgregar = {nombre: nombreLibro, autor: nombreAutor};
+        this.libros = [...this.libros, objetoAAgregar]; 
+    }
+
+    getBookNames() {
+        let arrayNombresLibros = this.libros.map(libro => (libro.nombre));
+        return arrayNombresLibros;    
+    }
+}
+
+const libroDeEjemplo = [{nombre: "Misery", autor: "Stephen King"}];
+const mascotas = ["Pancho", "Luna", "Coco"];
+const usuario = new Usuario("Franco", "Oubel", libroDeEjemplo, mascotas);
+
+//Nombre completo
+console.log(`El nombre completo del usuario es ${usuario.getFullName()}`);
+console.log();
+
+//Mascotas
+console.log(`La cantidad de mascotas inicial es ${usuario.countMascotas()}`);
+usuario.addMascota("Lolo");
+usuario.addMascota("Manchita");
+console.log(`La cantidad de mascotas luego de agregar dos es ${usuario.countMascotas()}`);
+console.log();
+
+//Libros
+console.log(`Libros antes de agregar nuevos títulos: ${usuario.getBookNames()}`);
+//1 - addBook
+usuario.addBook("Un Mundo Feliz", "Aldous Huxley");
+usuario.addBook("Crónicas Marcianas", "Ray Bradbury");
+//2 - getBookNames
+console.log(`Libros después de agregar nuevos títulos: ${usuario.getBookNames()}`);
+
